@@ -55,8 +55,16 @@ class EmployeePayrollData{
     get startDate(){
         return this._startDate;
     }
+
+    /* UC 10 */
     set startDate(startDate){
-        this._startDate = startDate;
+        const future = new Date();
+        future.setDate(future.getDate()+30);
+        if(startDate < new Date() || startDate <future){
+            this._startDate = startDate;
+        } else {
+            throw "Start date is invalid";
+        }
     }
 
     get notes(){
